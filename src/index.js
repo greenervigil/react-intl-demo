@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { IntlProvider } from 'react-intl';
 
 const root = document.getElementById('root');
 ReactDOM.render(
   <React.StrictMode>
-    <IntlProvider locale='en'>
-      <App />
-    </IntlProvider>
+    <App />
   </React.StrictMode>, root
 );
 
