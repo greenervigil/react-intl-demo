@@ -10,12 +10,11 @@ import './App.css';
 function App() {
   const [locale, setLocale] = useState(LOCALES.BRITISH);
   const handleChange = event => {
-    alert(`${locale} and ${arDZ}`)
     setLocale(event.target.value)
   }
   return (
     <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={LOCALES.USENGLISH}>
-    <I18nContext.Provider value={{...defaultI18n, timeFormat: '24', dateFormat: 'dd/MM/yyyy', locale: arDZ ? arDZ : locale}}>
+    <I18nContext.Provider value={{...defaultI18n, timeFormat: '24', dateFormat: 'yyyy/dd/MM', locale: arDZ}}>
       <div className="App">
         <h1>
           <FormattedMessage id="app.welcome" defaultMessage="Welcome" description="Welcome header on app main page" />
@@ -25,9 +24,11 @@ function App() {
             <CardBody>
               <Form>
                 <Input labelText={<FormattedMessage id="app.color-label" defaultMessage="What's your favorite color?" description="Color input label"/>}
-                  style={{textAlign: 'right', float: 'right'}}
+                inputStyle={{textAlign: 'right'}}
+                  
                 />
                 <DatePicker labelText={<FormattedMessage id="app.date-label" defaultMessage="Pick a date" description="date picker label" />} 
+                
                 />
                 <TimePicker labelText={<FormattedMessage id="app.time-label" defaultMessage="When is quitting time?" description="time description" />} />
                 <NativeSelect labelText={<FormattedMessage id="app.change-label" defaultMessage="Change Language" description="selection option to change language" />}
