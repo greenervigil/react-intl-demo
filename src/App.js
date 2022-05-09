@@ -1,11 +1,41 @@
 import React, { useState } from 'react';
-import { BlockQuote, BlockQuoteItem, Card, CardAlignment, CardBody, DatePicker, defaultI18n, Flex, FlexJustify,  Form, I18nContext, Input, NativeSelect, TypographyVisualStyle, TimePicker } from 'react-magma-dom';
+import { BlockQuote, BlockQuoteItem, Card, CardAlignment, CardBody, DatePicker, defaultI18n, Flex, FlexJustify,  Form, I18nContext, Input, NativeSelect, TypographyVisualStyle, TimePicker, Container } from 'react-magma-dom';
 import { arDZ, sv } from 'date-fns/locale';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import { LOCALES } from './i18n/locales';
 import { messages } from './i18n/messages';
 import './App.css';
+import { Notes } from 'common-experience-library';
 
+const notes = [
+  {
+    id: '1',
+    title: 'Note title',
+    userGuid: 'userGuid',
+    courseCgi: 'courseCgi',
+    instanceId: 'instanceId',
+    modifiedTime: '2233-03-22T12:00:00.000',
+    body: 'Note body'
+  },
+  {
+    id: '2',
+    title: 'Another note title',
+    userGuid: 'userGuid',
+    courseCgi: 'courseCgi',
+    instanceId: 'instanceId',
+    modifiedTime: '2233-03-22T12:00:00.000',
+    body: 'Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. '
+  },
+  {
+    id: '3',
+    title: 'This is a very very long title and I am not sure how much longer it can get ..... ',
+    userGuid: 'userGuid',
+    courseCgi: 'courseCgi',
+    instanceId: 'instanceId',
+    modifiedTime: '2233-03-22T12:00:00.000',
+    body: 'Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. Here is a multi-line note. '
+  }
+];
 
 function App() {
   const [locale, setLocale] = useState(LOCALES.BRITISH);
@@ -14,7 +44,7 @@ function App() {
   }
   return (
     <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={LOCALES.USENGLISH}>
-    <I18nContext.Provider value={{...defaultI18n, timeFormat: '24', dateFormat: 'yyyy/dd/MM', locale: arDZ}}>
+    <I18nContext.Provider value={{...defaultI18n, timeFormat: '24', dateFormat: 'yyyy/dd/MM', locale: sv}}>
       <div className="App">
         <h1>
           <FormattedMessage id="app.welcome" defaultMessage="Welcome" description="Welcome header on app main page" />
@@ -50,6 +80,9 @@ function App() {
           </BlockQuoteItem>
         </BlockQuote>
       </div>
+      <Container maxWidth={500}>
+        <Notes ssoGUID='1111' courseCgi='courseCGI' activityInstanceId='22222' notes={notes} />
+      </Container>
       </I18nContext.Provider>
     </IntlProvider>
   );
